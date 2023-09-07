@@ -1,1 +1,0 @@
-{"version":3,"file":"Base.controller.js","names":["sap","ui","define","Controller","extend","onInit","this","oRouter","getOwnerComponent","getRouter"],"sources":["Base-dbg.controller.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACV,8BAKA,SAAUC,GACN,aAEA,OAAOA,EAAWC,OAAO,oCAAqC,CAC1DC,OAAQ,WACJC,KAAKC,QAAUD,KAAKE,oBAAoBC,WAC5C,GAER"}

@@ -39,8 +39,8 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Prsr",
-									"targetURL": "#comdestsharprsr-display"
+									"title": "CV",
+									"targetURL": "#CV-display"
 								}
 							}]
 						}]
@@ -51,18 +51,18 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"comdestsharprsr-display": {
-								"semanticObject": "comdestsharprsr",
+							"CV-display": {
+								"semanticObject": "CV",
 								"action": "display",
-								"description": "Tools for UI5 views processing",
-								"title": "Prsr",
+								"description": "CV",
+								"title": "CV",
 								"signature": {
 									"parameters": {}
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=com.destshar.prsr",
-									"url": sap.ui.require.toUrl("com/destshar/prsr")
+									"additionalInformation": "SAPUI5.Component=com.destshar.cv",
+									"url": sap.ui.require.toUrl("com/destshar/cv")
 								}
 							}
 						}

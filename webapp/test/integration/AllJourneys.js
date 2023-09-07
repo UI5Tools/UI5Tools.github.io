@@ -7,7 +7,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "com.destshar.prsr.view.",
+		viewNamespace: "com.destshar.cv.view.",
 		autoWait: true
 	});
 });

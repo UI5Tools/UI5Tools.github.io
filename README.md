@@ -1,25 +1,25 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Wed Jun 07 2023 11:28:09 GMT+0200 (Central European Summer Time)|
-|**App Generator**<br>@sap/generator-fiori-freestyle|
-|**App Generator Version**<br>1.9.7|
-|**Generation Platform**<br>Visual Studio Code|
-|**Template Used**<br>simple|
+|**Generation Date and Time**<br>Tue Sep 21 2021 19:43:00 GMT+0000 (Coordinated Universal Time)|
+|**App Generator**<br>@sap/generator-fiori|
+|**App Generator Version**<br>1.3.4|
+|**Generation Platform**<br>SAP Business Application Studio|
+|**Floorplan Used**<br>simple|
 |**Service Type**<br>None|
 |**Service URL**<br>N/A
-|**Module Name**<br>prsr|
-|**Application Title**<br>Prsr|
+|**Module Name**<br>cv|
+|**Application Title**<br>CV|
 |**Namespace**<br>com.destshar|
-|**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.114.0|
+|**UI5 Theme**<br>sap_fiori_3|
+|**UI5 Version**<br>Latest|
 |**Enable Code Assist Libraries**<br>False|
-|**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
+|**Enable Telemetry**<br>True|
 
-## prsr
+## cv
 
-Tools for UI5 views processing
+CV
 
 ### Starting the generated app
 

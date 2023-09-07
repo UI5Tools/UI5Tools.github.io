@@ -1,7 +1,11 @@
 /* global QUnit */
+QUnit.config.autostart = false;
 
-sap.ui.require(["com/destshar/prsr/test/integration/AllJourneys"
-], function () {
-	QUnit.config.autostart = false;
-	QUnit.start();
+sap.ui.getCore().attachInit(function () {
+	"use strict";
+
+	sap.ui.require([
+	], function () {
+		QUnit.start();
+	});
 });

@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"comdestshar/prsr/controller/Main.controller"
+	"comdestshar./cv/controller/Main.controller"
 ], function (Controller) {
 	"use strict";
 

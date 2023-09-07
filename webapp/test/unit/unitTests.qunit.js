@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"comdestshar/prsr/test/unit/AllTests"
+		"comdestshar./cv/test/unit/AllTests"
 	], function () {
 		QUnit.start();
 	});
