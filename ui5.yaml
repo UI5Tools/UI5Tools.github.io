@@ -2,7 +2,7 @@
 
 specVersion: "2.6"
 metadata:
-  name: com.destshar.prsr
+  name: "prsr"
 type: application
 server:
   customMiddleware:
@@ -15,12 +15,12 @@ server:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+          version: #
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
         port: 35729
         path: webapp
-        delay: 300
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
