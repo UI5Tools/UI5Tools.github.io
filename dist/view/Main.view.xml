@@ -1,0 +1,34 @@
+<mvc:View controllerName="com.destshar.prsr.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <TextArea width="100%" height="40%" value="{ViewData>/Source}"/>
+            <VBox class="sapUiSmallMargin">
+                <RadioButtonGroup width="100%" columns="10" class="sapUiTinyMargin" select="onOptionSelect" selectedIndex="-1">
+                    <RadioButton text="Create i18n"/>
+                    <RadioButton text="Get all IDs"/>
+                    <RadioButton text="Get required fields' IDs"/>
+                    <RadioButton text="Validate XML"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                    <RadioButton text="" visible="false"/>
+                </RadioButtonGroup>
+                <VBox class="sapUiTinyMargin" height="100%" visible="false">
+                    <Text text="Remember! Use proper format!"/>
+                    <TextArea width="100%" height="10rem" placeholder="Enter oData entity fields separated by commas..."/>
+                </VBox>
+                <Button text="Process!" width="100%" press="onProcess"/>
+            </VBox>
+            <TextArea width="100%" height="40%" editable="false" value="{ViewData>/Result}"/>
+            <TextArea width="100%" height="40%" editable="false" value="{ViewData>/I18N}" visible="{ViewState>/I18NVisible}"/>
+        </content>
+    </Page>
+</mvc:View>

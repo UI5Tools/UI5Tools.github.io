@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("com.destshar.prsr.controller.Base",{onInit:function(){this.oRouter=this.getOwnerComponent().getRouter()}})});
+//# sourceMappingURL=Base.controller.js.map
