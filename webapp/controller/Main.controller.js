@@ -31,6 +31,14 @@ sap.ui.define([
                 return xmlDoc
             },
 
+            _getTags: function() {
+
+            },
+
+            _getAttributes: function() {
+
+            },
+
             //------------------------------------------------------------------------
             //                              Create i18n
             //------------------------------------------------------------------------
@@ -227,6 +235,12 @@ sap.ui.define([
                             break
                     default: MessageToast.show('Select option first')
                 }                
-            }
+            },
+
+            //-----------------------------------------------------------------------
+
+            onSourcePaste: function(oEvent) {
+                
+            },
         });
     });
