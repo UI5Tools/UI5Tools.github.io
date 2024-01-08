@@ -18,27 +18,13 @@ sap.ui.define([
                 this.getView().setModel(this.oViewDataModel, 'ViewData')
                 
                 this.oViewState = {
-                    I18NVisible: false
+                    I18NVisible: false,
+                    ValidXML: false
                 }
                 this.oViewStateModel = new JSONModel(this.oViewState)
                 this.getView().setModel(this.oViewStateModel, 'ViewState')
             },
             
-            _parseXML: function(sXML) {
-                let parser = new DOMParser()
-                let xmlDoc = parser.parseFromString(sXML,'text/xml');
-
-                return xmlDoc
-            },
-
-            _getTags: function() {
-
-            },
-
-            _getAttributes: function() {
-
-            },
-
             //------------------------------------------------------------------------
             //                              Create i18n
             //------------------------------------------------------------------------
@@ -123,62 +109,7 @@ sap.ui.define([
                 }
 
                 return sPrefix
-            },
-
-            //------------------------------------------------------------------------
-            //                              Get all IDs
-            //------------------------------------------------------------------------
-
-            _getAllIDs: function() {
-                if(this._validateXML()) return
-
-                let aXML = this._parseXML(this.oViewData.Source)
-
-                let sResult = ''
-                
-                Array.from(aXML.all).forEach(tag => {
-                    Array.from(tag.attributes).forEach(attribute => {
-                        if(attribute.nodeName === 'id') {
-                            sResult += '"' + attribute.nodeValue + '",\n'
-                        }
-                    })
-                })
-
-
-
-                this.oViewData.Result = sResult.slice(0,-2)
-                this.oViewDataModel.refresh()
-            },
-
-            //------------------------------------------------------------------------
-            //                              Validate XML
-            //------------------------------------------------------------------------
-
-            _validateXML: function() {
-                let aXML = this._parseXML(this.oViewData.Source)
-                let aXMLTags = Array.from(aXML.all)
-                let bErrors = true
-
-                let sResult = ''
-                
-                aXMLTags.forEach(tag => {
-                    if(tag.nodeName === 'parsererror') {
-                        sResult += tag.innerText + '\n\n'
-                    }
-                })
-
-                if(sResult === '') {
-                    sResult = 'No errors found'
-                    bErrors = false
-                }
-
-                sResult = sResult.replaceAll('Below is a rendering of the page up to the first error.', '')
-
-                this.oViewData.Result = sResult
-                this.oViewDataModel.refresh()
-
-                return bErrors
-            },
+            },            
 
             //------------------------------------------------------------------------
             //                              Get required fields' IDs
@@ -240,7 +171,83 @@ sap.ui.define([
             //-----------------------------------------------------------------------
 
             onSourcePaste: function(oEvent) {
+                let sXML = oEvent.getSource().getValue()
+
+                if(this._validateXML(sXML)) {
+                    this.oViewData.Controls = []
+                    this.oViewDataModel.refresh()
+                    this.oViewState.ValidXML = false
+                    this.oViewStateModel.refresh()
+                    return
+                }
+
+                let aTags = this._getTags(this._parseXML(sXML))
+                let aControls = new Set()
+
+                aTags.forEach(oTag => {
+                    aControls.add(oTag.nodeName)
+                })
+
+                if(aControls.has("parsererror")) {
+                    this.oViewData.Controls = []
+                    this.oViewDataModel.refresh()
+                    this.oViewState.ValidXML = false
+                    this.oViewStateModel.refresh()
+                    return
+                } else {
+                    this.oViewData.Controls = Array.from(aControls).sort().map(sControl => {return {Name: sControl, Checked: true}})
+                    this.oViewDataModel.refresh()
+                    this.oViewState.ValidXML = true
+                    this.oViewStateModel.refresh()
+                }
+            },
+
+            onGetAllIDs: function(oEvent) {
+                this._getAllIDs()
+            },
+
+            //------------------------------------------------------------------------
+            //                              Get all IDs
+            //------------------------------------------------------------------------
+
+            _getConsideredControls: function() {
+                return this.oViewData.Controls.filter(item => item.Checked).map(item => item.Name)
+            },
+
+            _getAllIDs: function() {
+                if(this._validateXML()) return
+
+                let aXML = this._parseXML(this.oViewData.Source)
+                let aConsideredControls = this._getConsideredControls()
+                let sResult = ''
                 
+                if(this.oViewState.JSFriendly) {
+                    Array.from(aXML.all).forEach(tag => {
+                        if(aConsideredControls.includes(tag.nodeName)) {
+                            Array.from(tag.attributes).forEach(attribute => {
+                                if(attribute.nodeName === 'id') {
+                                    sResult += '"' + attribute.nodeValue + '",\n'
+                                }
+                            })
+                        }
+                    })
+
+                    this.oViewData.Result = sResult.slice(0,-2)
+                } else {
+                    Array.from(aXML.all).forEach(tag => {
+                        if(aConsideredControls.includes(tag.nodeName)) {
+                            Array.from(tag.attributes).forEach(attribute => {
+                                if(attribute.nodeName === 'id') {
+                                    sResult += attribute.nodeValue + ','
+                                }
+                            })
+                        }
+                    })
+
+                    this.oViewData.Result = sResult.slice(0,-1)
+                }
+
+                this.oViewDataModel.refresh()
             },
         });
     });

@@ -5,7 +5,7 @@
     <Page >
         <content>
             <l:Grid>
-                <l:content>
+                <l:content>                    
                     <List class="sapUiSmallMargin">
                         <items>
                             <StandardListItem title="Get IDs" type="Navigation"/>
@@ -16,16 +16,21 @@
                             <l:GridData
                                 span="L3 M3 S12"/>
                         </layoutData>
-                    </List>
+                    </List>                    
                     <VBox class="sapUiSmallMargin">
                         <items>
-                            <TextArea width="100%" height="20rem" value="{ViewData>/Source}" liveChange="onSourcePaste"/>
-                            <Panel headerText="Controls" content="{ViewData>/Controls}">
+                            <Panel headerText="Source code" id="Trololo">
+                                <TextArea width="100%" height="20rem" placeholder="Place your source code here..." value="{ViewData>/Source}" liveChange="onSourcePaste"/>
+                            </Panel>
+                            <Panel headerText="Controls" content="{ViewData>/Controls}" visible="{ViewState>/ValidXML}" id="Buahaha">
                                 <CheckBox text="{ViewData>Name}" selected="{ViewData>Checked}"/>
                             </Panel>
                             <Panel headerText="Additional options">
-                                <CheckBox text="JS-friendly"/>
-                                <CheckBox text="Raw"/>
+                                <CheckBox text="JS-friendly" selected="{ViewState>/JSFriendly}"/>
+                            </Panel>
+                            <Button text="Get all IDs" width="100%" class="sapUiSmallMargin" press="onGetAllIDs"/>
+                            <Panel headerText="Results">
+                                <TextArea width="100%" height="20rem" editable="false" value="{ViewData>/Result}"/>
                             </Panel>
                         </items>
                         <layoutData>
@@ -37,6 +42,8 @@
             </l:Grid>
         </content>
     </Page>
+
+
     <Page visible="false" title="{i18n>title}">
         <content>
             <TextArea width="100%" height="40%" value="{ViewData>/Source}"/>
